@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Grocery Essentials | Smart Shopping</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Animation -->
+    <div class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-shopping-basket"></i>
+            </div>
+            <div class="loading-text">
+                <span class="letter" style="--delay:0">M</span>
+                <span class="letter" style="--delay:1">O</span>
+                <span class="letter" style="--delay:2">N</span>
+                <span class="letter" style="--delay:3">T</span>
+                <span class="letter" style="--delay:4">H</span>
+                <span class="letter" style="--delay:5">L</span>
+                <span class="letter" style="--delay:6">Y</span>
+                <span class="letter" style="--delay:7">&nbsp;</span>
+                <span class="letter" style="--delay:8">G</span>
+                <span class="letter" style="--delay:9">R</span>
+                <span class="letter" style="--delay:10">O</span>
+                <span class="letter" style="--delay:11">C</span>
+                <span class="letter" style="--delay:12">E</span>
+                <span class="letter" style="--delay:13">R</span>
+                <span class="letter" style="--delay:14">Y</span>
+            </div>
+            <div class="loading-subtitle">Precision Shopping Experience</div>
+        </div>
+    </div>
+
+    <!-- Background Particles -->
+    <div class="particles-container">
+        <canvas id="particles"></canvas>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-seedling"></i>
+                    <h1>Grocery<span>Essentials</span></h1>
+                </div>
+                
+                <div class="nav-controls">
+                    <div class="cart-indicator" id="cartIndicator">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                        <span class="cart-text">Items</span>
+                    </div>
+                    
+                    <button class="btn btn-view-cart" id="viewCartBtn">
+                        <i class="fas fa-shopping-bag"></i>
+                        View Cart
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h2>Monthly Grocery Planning</h2>
+                    <p class="hero-subtitle">Select 36 essential non-perishable items with fixed MRP and discounts</p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-box"></i>
+                            <div>
+                                <h3>36 Items</h3>
+                                <p>Essential Products</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-tag"></i>
+                            <div>
+                                <h3>Fixed Pricing</h3>
+                                <p>No Price Changes</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-weight"></i>
+                            <div>
+                                <h3>Flexible Weight</h3>
+                                <p>Custom Quantities</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Control Panel -->
+            <section class="control-panel">
+                <div class="panel-header">
+                    <h3><i class="fas fa-sliders-h"></i> Product Selection</h3>
+                    <div class="selection-info">
+                        <span id="selectedCount">0</span> items selected
+                    </div>
+                </div>
+                
+                <div class="controls-grid">
+                    <div class="control-group">
+                        <label><i class="fas fa-filter"></i> Filter by Category</label>
+                        <div class="filter-tags">
+                            <button class="tag-btn active" data-category="all">All Items</button>
+                            <button class="tag-btn" data-category="grains">Grains</button>
+                            <button class="tag-btn" data-category="pulses">Pulses</button>
+                            <button class="tag-btn" data-category="flour">Flour</button>
+                            <button class="tag-btn" data-category="spices">Spices</button>
+                            <button class="tag-btn" data-category="dry_fruits">Dry Fruits</button>
+                            <button class="tag-btn" data-category="oils">Oils</button>
+                            <button class="tag-btn" data-category="packaged">Packaged</button>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label><i class="fas fa-mouse-pointer"></i> Selection Mode</label>
+                        <div class="selection-buttons">
+                            <button class="selection-btn active" id="singleSelectBtn">
+                                <i class="fas fa-mouse-pointer"></i> Single Select
+                            </button>
+                            <button class="selection-btn" id="multiSelectBtn">
+                                <i class="fas fa-layer-group"></i> Multi Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products Table -->
+            <section class="products-section">
+                <div class="table-container">
+                    <table class="products-table">
+                        <thead>
+                            <tr>
+                                <th class="select-col">
+                                    <input type="checkbox" id="selectAllCheckbox">
+                                    <label for="selectAllCheckbox"></label>
+                                </th>
+                                <th>#</th>
+                                <th>Item Name</th>
+                                <th>Weight</th>
+                                <th>Company</th>
+                                <th>MRP (₹)</th>
+                                <th>Discount (%)</th>
+                                <th>Payable (₹)</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                            <!-- Products will be loaded here -->
+                        </tbody>
+                    </table>
+                    
+                    <!-- Empty State -->
+                    <div class="empty-state" id="emptyTable">
+                        <i class="fas fa-search"></i>
+                        <h3>No Products Found</h3>
+                        <p>Try selecting a different category</p>
+                    </div>
+                </div>
+                
+                <!-- Bulk Actions -->
+                <div class="bulk-actions" id="bulkActions">
+                    <div class="bulk-info">
+                        <i class="fas fa-layer-group"></i>
+                        <span id="bulkCount">0</span> items selected
+                    </div>
+                    <div class="bulk-buttons">
+                        <button class="btn btn-secondary" id="clearSelectionBtn">
+                            Clear Selection
+                        </button>
+                        <button class="btn btn-primary" id="addSelectedToCart">
+                            <i class="fas fa-cart-plus"></i>
+                            Add Selected to Cart
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i class="fas fa-seedling"></i>
+                    <h3>GroceryEssentials</h3>
+                    <p>Smart shopping for intelligent households</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Features</h4>
+                        <a href="#">Bulk Selection</a>
+                        <a href="#">Fixed Pricing</a>
+                        <a href="#">Weight Customization</a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h4>Support</h4>
+                        <a href="#">Help Center</a>
+                        <a href="#">Contact Us</a>
+                        <a href="#">FAQ</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2024 GroceryEssentials. All rights reserved.</p>
+                <div class="footer-social">
+                    <span>Designed with precision</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Preview Modal -->
+    <div class="modal" id="cartPreviewModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-shopping-cart"></i> Cart Preview</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="cart-preview" id="cartPreview">
+                    <!-- Cart items preview -->
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" id="continueShoppingBtn">
+                        Continue Shopping
+                    </button>
+                    <button class="btn btn-primary" id="goToCartBtn">
+                        Go to Cart <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
